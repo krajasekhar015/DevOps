@@ -1,0 +1,7 @@
+---
+- name: Configuring frontend Server
+  hosts: frontend
+  become: yes
+  roles:
+  - frontend
+

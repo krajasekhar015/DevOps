@@ -1,0 +1,11 @@
+- name: variables to print
+  hosts: web
+  tasks:
+  - name: print the information
+    ansible.builtin.debug:
+      msg: "Hello {{NAME}}, Good {{GREETING}}"
+
+#  The below mentioned two commands are used to execute this playbook
+#  ansible-playbook -i inventory.ini -e ansible_user=ec2-user -e ansible_password=DevOps321 09-vars-from-args.yml -e "NAME=Raju GREETING=Morinig"
+#  ansible-playbook -i inventory.ini -e ansible_user=ec2-user -e ansible_password=DevOps321 09-vars-from-args.yml --extra-vars "NAME=Raju GREETING=Morning"
+#  In the above two commands, -e & --extra-var are used to pass arguments through the command line

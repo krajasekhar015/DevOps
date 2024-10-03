@@ -1,0 +1,18 @@
+---
+- name: command vs shell
+  hosts: local
+  connection: local
+  tasks:
+  - name: execute the command
+    ansible.builtin.command: "sudo dnf install zip -y" 
+    # shell module, login to the server and execute command inside
+    # command module, just issues the command
+
+  - name: check the process
+    ansible.builtin.shell: ls -ltr > /tmp/output.txt
+    register: output
+
+  - name: check the process
+    ansible.builtin.command: ps -ef | grep ssh
+    register: output
+

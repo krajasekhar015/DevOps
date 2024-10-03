@@ -1,0 +1,27 @@
+# OBJECTIVE OF THIS PLAYBOOK
+#------------------------------------------------------------------------------
+# 1. We need to create a user with the name 'expense'
+# 2. First we need to check whether the user is exist or not.
+# 3. If exits, ignore orelse we need to create the user using command or modules
+
+
+- name: ping the control node
+  hosts: web #To which hosts our ansible server wants to connect
+  tasks: #List of tasks/modules/collections
+  - name: ping the server
+    ansible.builtin.ping:
+
+
+# POINTS TO REMEMBER, PLEASE CHECK THIS BEFORE RUNNING/EXECUTING THE PLAYBOOK FOR BETTER UNDERSTANDING
+#-------------------------------------------------------------------------------------------------------------
+#1. This is a sample playbook, in which we use ping module to check the connection with server.
+# 2. 'name' refers to the playbook name
+# 3. 'hosts' refers to the server where we need to run this playbook. Here we used web which is mentioned in the inventory file.
+# 4. 'tasks' refers to the list of tasks to be executed on the server/node.
+# 5. 'name' refers to the name of the task to be executed
+# 6. 'ansible.builtin.ping:' is the ansible builtin module which try's to connect to host, verify a usable python and return pong on success
+
+
+# COMMAND TO RUN THIS PLAYBOOK
+#-------------------------------------------------------------------
+# ansible-playbook -i inventory.ini -e ansible_user=ec2-user -e ansible_password=DevOps321 01.ping.yml

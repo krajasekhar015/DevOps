@@ -1,0 +1,28 @@
+- name: check a number is less than 10 or not
+  hosts: local
+  connection: local
+  vars_prompt:
+  - name: number
+    prompt: Please enter the number
+    private: false # not confidential
+  # vars:
+  #   my_number: 139 # number
+  tasks:
+  - name: print this if less than 10
+    ansible.builtin.debug:
+      msg: "Given number {{number}} is less than 10"
+    when: number | int < 10 # conditional expression
+
+  - name: print this if greater than or equal to 10
+    ansible.builtin.debug:
+      msg: "Given number {{number}} greater than or equal to 10"
+    when: number | int >= 10
+
+
+#1.Ansible uses 'when' keyword to decide whether the task/module to run or not 
+#2.Data present in vars_prompt by default considered as string. 
+#3.'number | int >= 10' This is called conditional expression. We need to specify that number variable to be considered as interger. 
+
+
+# command to run this playbook
+# ansible-playbook -i inventory.ini 12-conditions.yml

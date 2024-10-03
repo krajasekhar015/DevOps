@@ -1,0 +1,20 @@
+# OBJECTIVE OF THIS PLAYBOOK
+#------------------------------------------------------------------------------
+# 1. We need to gather facts that are running in the background when we run a playbook
+# 2. 'ansible_facts' bydefault, ansible will set this variable automatically
+# 3. The gathered information will be stored in 'ansible_facts' variable 
+
+
+- name: gathering facts
+  hosts: web
+  become: yes
+  tasks:
+  - name: print the facts
+    ansible.builtin.debug:
+      msg: " {{ ansible_facts }} "
+
+
+# POINTS TO REMEMBER, PLEASE CHECK THIS BEFORE RUNNING/EXECUTING THE PLAYBOOK FOR BETTER UNDERSTANDING
+#-----------------------------------------------------------------------------------------------------
+# 1. The main reason that ansible to become heterogenous is, it will grab all the details of servers statistics, facts & variables before connecting to it and it will take decisions based on that information.
+# 2. Similarly, if we don't know the underlying OS of the server, then we can use 'ansible.builtin.package:' Here package module will gather all the facts of the server in the background and based on that it will install packages or anything accorinding to the underlying OS

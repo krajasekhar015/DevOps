@@ -1,0 +1,37 @@
+# OBJECTIVE OF THIS PLAYBOOK
+#------------------------------------------------------------------------------
+# 1. We need to create a user with the name 'expense'
+# 2. First we need to check whether the user is exist or not.
+# 3. If exits, ignore orelse we need to create the user using command or modules
+
+
+- name: create user
+  hosts: web
+  become: yes
+  tasks:
+  - name: check whether user exist or not
+    ansible.builtin.command: id expense
+    register: USER #here USER is a variable that gets output from above command
+    ignore_errors: True
+
+  - name: print the user information
+    ansible.builtin.debug:
+      msg: "user info: {{ USER }}"
+
+  - name: create user
+    ansible.builtin.command: useradd expense
+    when: USER.rc != 0
+
+
+
+# POINTS TO REMEMBER, PLEASE CHECK THIS BEFORE RUNNING/EXECUTING THE PLAYBOOK FOR BETTER UNDERSTANDING
+#-------------------------------------------------------------------------------------------------------------
+#1. If module does not exist, then use ansible.builtin.command for simple tasks.
+#2. 'register' is the keyword in ansible and 'USER' is the variable used to store the output of its above command and it was captured by register
+#3. 'ignore_errors: True' defines that if error comes please ignore and proceed further
+#4. 'rc' defines return code in ansible, where as exit status in shell script. If it returns 0 then the command exectuted is success & other than 0 it is failure
+
+
+# COMMAND TO RUN THIS PLAYBOOK
+#-------------------------------------------------------------------
+# ansible-playbook -i inventory.ini 13-usercreation-conditions.yml

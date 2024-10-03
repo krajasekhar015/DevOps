@@ -1,0 +1,14 @@
+- name: Install the Nginx Server
+  hosts: web
+  become: yes #take sudo access
+  tasks:
+  - name: Installing the Nginx server on control node
+    ansible.builtin.package: #heterongenous module that can work for all distros
+      name: nginx
+      state: present  #present for install & absent for removing
+  
+  - name: run nginx
+    ansible.builtin.service:  #service module
+      name: nginx
+      state: started
+      enabled: yes

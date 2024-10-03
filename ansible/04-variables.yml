@@ -1,0 +1,12 @@
+- name: variables to print
+  hosts: web
+  vars:   #variables declaration
+    COURSE: "DevOps with AWS"
+    DURATION: "120HRS"
+    TRAINER: "Sivakumar Reddy M"
+  tasks:
+  - name: print the information
+    ansible.builtin.debug:
+      msg: "Hi, I am learning {{COURSE}}, Duration is: {{DURATION}}, Trainer: {{TRAINER}}"
+
+      #variable calling should be in double flower braces {{VARIABLE_NAME}}

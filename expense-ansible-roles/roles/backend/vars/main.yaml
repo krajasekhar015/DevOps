@@ -1,0 +1,4 @@
+mysql_root_password: ExpenseApp@1
+login_host: mysql.krajasekhar015.cloud
+app_location: /app
+component: backend
