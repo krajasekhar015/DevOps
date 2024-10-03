@@ -1,0 +1,5 @@
+# mysql_root_password: ExpenseApp@1
+# login_host: mysql.krajasekhar015.cloud
+
+# we have commented this due to vault use case implementation 
+

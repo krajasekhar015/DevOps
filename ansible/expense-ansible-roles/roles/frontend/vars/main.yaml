@@ -1,0 +1,3 @@
+backend_host: backend.krajasekhar015.cloud
+app_location: /usr/share/nginx/html
+component: frontend
